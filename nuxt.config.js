@@ -41,7 +41,7 @@ export default {
 
   // Auth config
   auth: {
-      strategies: {
+    strategies: {
       laravelSanctum: {
         provider: 'laravel/sanctum',
         url: 'http://localhost:8088'
