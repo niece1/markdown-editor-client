@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent="login">
+  <form @submit.prevent="resetPassword">
     <div class="mb-4">
       <div class="mb-2">
         <label for="email" class="block">Email</label>
@@ -12,13 +12,12 @@
       </div>
 
       <div class="mb-2">
-        <nuxt-link :to="{ name: 'forgot-password' }">Forgot your password?</nuxt-link>
+        <label for="password_confirmation" class="block">Password confirmation</label>
+        <input type="password" name="password_confirmation" id="password_confirmation" v-model="form.password_confirmation" class="border border-gray-400 py-1 px-2 rounded">
       </div>
     </div>
 
-    <button type="submit" class="bg-gray-400 py-1 px-3 rounded">
-      Login
-    </button>
+    <button type="submit" class="bg-gray-400 py-1 px-3 rounded">Update password</button>
   </form>
 </template>
 
@@ -27,17 +26,19 @@ export default {
   data () {
     return {
       form: {
-        email: '',
+        email: this.$route.query.email || '', //email from query
         password: '',
+        password_confirmation: '',
+        token: this.$route.query.token || ''
       }
     }
   },
   methods: {
-    async login () {
+    async resetPassword () {
       try {
-        await this.$auth.loginWith('laravelSanctum', {
-          data: this.form
-        })
+        await this.$axios.get('sanctum/csrf-cookie')
+        await this.$axios.post('reset-password', this.form)
+        this.$router.replace({ name: 'login' })
       } catch (e) {
         console.log(e)
       }
