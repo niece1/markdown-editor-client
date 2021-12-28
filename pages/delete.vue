@@ -9,6 +9,7 @@ export default {
   methods: {
     async deleteAccount () {
       try {
+        // we are under api namespace so we don't need to use csrf cookie, api/ route is excluded from csrf protection
         await this.$axios.delete('api/user')
         await this.$auth.logout()
         this.$router.replace({ name: 'index' })
@@ -19,4 +20,3 @@ export default {
   }
 }
 </script>
-// we are under api namespace so we don't need to use csrf cookie, api/ route is excluded from csrf protection

@@ -12,6 +12,9 @@
       <div class="mb-2">
         <nuxt-link :to="{ name: 'delete' }">Delete account</nuxt-link>
       </div>
+      <div class="mb-2">
+        <nuxt-link :to="{ name: 'two-factor-authentication' }">Two factor authentication</nuxt-link>
+      </div>
     </div>
     <button type="submit" class="bg-gray-400 py-1 px-3 rounded">Update</button>
   </form>
