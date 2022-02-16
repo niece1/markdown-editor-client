@@ -8,11 +8,11 @@
 </template>
 
 <script>
-export default {
-  methods: {
-    async resendEmailVerification () {
-      await this.$axios.post('email/verification-notification')
+  export default {
+    methods: {
+      async resendEmailVerification () {
+        await this.$axios.post('email/verification-notification')
+      }
     }
   }
-}
 </script>

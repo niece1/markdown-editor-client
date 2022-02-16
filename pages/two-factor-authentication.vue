@@ -18,23 +18,23 @@
 </template>
 
 <script>
-export default {
-  data () {
-    return {
-      qrCode: null,
-      recoveryCodes: null
-    }
-  },
-  methods: {
-    async enableTwoFactorAuthentication () {
-      await this.$axios.get('sanctum/csrf-cookie')
-      await this.$axios.post('user/two-factor-authentication')
-      await this.$auth.fetchUser()
-      this.qrCode = (await this.$axios.get('user/two-factor-qr-code')).data.svg
-      this.getRecoveryCodes()
+  export default {
+    data () {
+      return {
+        qrCode: null,
+        recoveryCodes: null
+      }
     },
-    async disableTwoFactorAuthentication () {
-      await this.$axios.delete('user/two-factor-authentication')
+    methods: {
+      async enableTwoFactorAuthentication () {
+        await this.$axios.get('sanctum/csrf-cookie')
+        await this.$axios.post('user/two-factor-authentication')
+        await this.$auth.fetchUser()
+        this.qrCode = (await this.$axios.get('user/two-factor-qr-code')).data.svg
+        this.getRecoveryCodes()
+      },
+      async disableTwoFactorAuthentication () {
+        await this.$axios.delete('user/two-factor-authentication')
       //make sure we use auth to grab the user's info back
       await this.$auth.fetchUser()
     },

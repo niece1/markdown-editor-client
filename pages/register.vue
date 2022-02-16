@@ -23,29 +23,29 @@
 </template>
 
 <script>
-export default {
-  data () {
-    return {
-      form: {
-        name: '',
-        email: '',
-        password: '',
-        password_confirmation: '',
+  export default {
+    data () {
+      return {
+        form: {
+          name: '',
+          email: '',
+          password: '',
+          password_confirmation: '',
+        }
       }
-    }
-  },
-  methods: {
-    async register () {
-      try {
-        await this.$axios.get('sanctum/csrf-cookie')
-        await this.$axios.post('register', this.form)
-        await this.$auth.loginWith('laravelSanctum', {
-          data: { email: this.form.email, password: this.form.password }
-        })
-      } catch (e) {
-        console.log(e)
+    },
+    methods: {
+      async register () {
+        try {
+          await this.$axios.get('sanctum/csrf-cookie')
+          await this.$axios.post('register', this.form)
+          await this.$auth.loginWith('laravelSanctum', {
+            data: { email: this.form.email, password: this.form.password }
+          })
+        } catch (e) {
+          console.log(e)
+        }
       }
     }
   }
-}
 </script>

@@ -5,11 +5,11 @@
 </template>
 
 <script>
-export default {
-  middleware: ['auth', 'verified'],
+  export default {
+    middleware: ['auth', 'verified'],
 
-  async mounted () {
-    await this.$axios.get('api/admin')
+    async mounted () {
+      await this.$axios.get('api/admin')
+    }
   }
-}
 </script>

@@ -11,23 +11,23 @@
 </template>
 
 <script>
-export default {
-  data () {
-    return {
-      form: {
-        email: '',
+  export default {
+    data () {
+      return {
+        form: {
+          email: '',
+        }
       }
-    }
-  },
-  methods: {
-    async sendForgotYourPasswordEmail () {
-      try {
-        await this.$axios.get('sanctum/csrf-cookie')
-        await this.$axios.post('forgot-password', this.form)
-      } catch (e) {
-        console.log(e)
+    },
+    methods: {
+      async sendForgotYourPasswordEmail () {
+        try {
+          await this.$axios.get('sanctum/csrf-cookie')
+          await this.$axios.post('forgot-password', this.form)
+        } catch (e) {
+          console.log(e)
+        }
       }
     }
   }
-}
 </script>

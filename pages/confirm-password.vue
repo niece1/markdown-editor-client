@@ -11,24 +11,24 @@
 </template>
 
 <script>
-export default {
-  data () {
-    return {
-      form: {
-        password: '',
+  export default {
+    data () {
+      return {
+        form: {
+          password: '',
+        }
       }
-    }
-  },
-  methods: {
-    async confirmYourPassword () {
-      try {
-        await this.$axios.get('sanctum/csrf-cookie')
-        await this.$axios.post('user/confirm-password', this.form)
-        this.$router.replace({ name: this.$route.query.return || 'index' })
-      } catch (e) {
-        console.log(e)
+    },
+    methods: {
+      async confirmYourPassword () {
+        try {
+          await this.$axios.get('sanctum/csrf-cookie')
+          await this.$axios.post('user/confirm-password', this.form)
+          this.$router.replace({ name: this.$route.query.return || 'index' })
+        } catch (e) {
+          console.log(e)
+        }
       }
     }
   }
-}
 </script>

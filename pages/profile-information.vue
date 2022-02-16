@@ -21,25 +21,25 @@
 </template>
 
 <script>
-export default {
-  data () {
-    return {
-      form: {
-        name: this.$auth.user.name,
-        email: this.$auth.user.email,
+  export default {
+    data () {
+      return {
+        form: {
+          name: this.$auth.user.name,
+          email: this.$auth.user.email,
+        }
       }
-    }
-  },
-  methods: {
-    async updateProfileInformation () {
-      try {
-        await this.$axios.get('sanctum/csrf-cookie')
-        await this.$axios.put('user/profile-information', this.form)
-        await this.$auth.fetchUser()
-      } catch (e) {
-        console.log(e)
+    },
+    methods: {
+      async updateProfileInformation () {
+        try {
+          await this.$axios.get('sanctum/csrf-cookie')
+          await this.$axios.put('user/profile-information', this.form)
+          await this.$auth.fetchUser()
+        } catch (e) {
+          console.log(e)
+        }
       }
     }
   }
-}
 </script>

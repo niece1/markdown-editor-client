@@ -19,10 +19,10 @@
 </template>
 
 <script>
-export default {
-  data () {
-    return {
-      form: {
+  export default {
+    data () {
+      return {
+        form: {
         email: this.$route.query.email || '', //email from query
         password: '',
         password_confirmation: '',

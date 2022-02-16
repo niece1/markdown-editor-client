@@ -20,25 +20,25 @@
 </template>
 
 <script>
-export default {
-  data () {
-    return {
-      form: {
-        email: '',
-        password: '',
+  export default {
+    data () {
+      return {
+        form: {
+          email: '',
+          password: '',
+        }
       }
-    }
-  },
-  methods: {
-    async login () {
-      try {
-        await this.$auth.loginWith('laravelSanctum', {
-          data: this.form
-        })
-      } catch (e) {
-        console.log(e)
+    },
+    methods: {
+      async login () {
+        try {
+          await this.$auth.loginWith('laravelSanctum', {
+            data: this.form
+          })
+        } catch (e) {
+          console.log(e)
+        }
       }
     }
   }
-}
 </script>

@@ -14,25 +14,25 @@
 </template>
 
 <script>
-export default {
-  data () {
-    return {
-      form: {
-        code: ''
+  export default {
+    data () {
+      return {
+        form: {
+          code: ''
+        }
       }
-    }
-  },
-  methods: {
-    async twoFactorChallenge () {
-      try {
-        await this.$axios.get('sanctum/csrf-cookie')
-        await this.$axios.post('two-factor-challenge', this.form)
-        await this.$auth.fetchUser()
-        this.$router.replace({ name: 'index' })
-      } catch (e) {
-        console.log(e)
+    },
+    methods: {
+      async twoFactorChallenge () {
+        try {
+          await this.$axios.get('sanctum/csrf-cookie')
+          await this.$axios.post('two-factor-challenge', this.form)
+          await this.$auth.fetchUser()
+          this.$router.replace({ name: 'index' })
+        } catch (e) {
+          console.log(e)
+        }
       }
     }
   }
-}
 </script>

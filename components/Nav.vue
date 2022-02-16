@@ -14,12 +14,12 @@
 </template>
 
 <script>
-export default {
-  methods: {
-    async logout () {
-      await this.$auth.logout()
-      this.$router.replace({ name: 'index' })
+  export default {
+    methods: {
+      async logout () {
+        await this.$auth.logout()
+        this.$router.replace({ name: 'index' })
+      }
     }
   }
-}
 </script>
